@@ -6,7 +6,7 @@ RUN npm install
 
 COPY . .
 
-COPY .env.${BUILD_ENV:-dev} ./.env
+COPY .env.${BUILD_ENV} ./.env
 
 EXPOSE 3000
 
