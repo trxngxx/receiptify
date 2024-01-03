@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:latest
+    container_name: db
+    environment:
+      MYSQL_ROOT_PASSWORD: testing111
+      MYSQL_DATABASE: users
+      MYSQL_USER: training
+      MYSQL_PASSWORD: testing111
+    logging:
+            driver: "json-file"
+            options:
+                max-size: "50m"
+    restart: unless-stopped
+    ports:
+      - "3306:3306"
+    networks:
+      - app-network
+
+  app:
+    image: 29trxngxx/devops-training:{tag}
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app
+    depends_on:
+      - db
+    ports:
+      - "3000:3000"
+    environment:
+      DB_HOST: db
+      DB_USER: training
+      DB_PASSWORD: testing111
+      DB_DATABASE: users
+      BUILD_ENV: stage
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    external: true
