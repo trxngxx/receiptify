@@ -3,22 +3,22 @@
  * @return Object
  */
 
-var displayName = 'RECEIPTIFY';
-var dateOptions = {
+const displayName = 'RECEIPTIFY';
+const dateOptions = {
   weekday: 'long',
   year: 'numeric',
   month: 'long',
   day: 'numeric',
 };
-var today = new Date();
+const today = new Date();
 
 function hiddenClone(element) {
   // Create clone of element
-  var clone = element.cloneNode(true);
+  const clone = element.cloneNode(true);
 
   // Position element relatively within the
   // body but still out of the viewport
-  var style = clone.style;
+  const style = clone.style;
   style.position = 'relative';
   style.top = window.innerHeight + 'px';
   style.left = 0;
@@ -53,7 +53,7 @@ function retrieveTracks(user, timeRangeSlug, domNumber, domPeriod) {
       let totalTime = 0;
       const date = today.toLocaleDateString('en-US', dateOptions).toUpperCase();
 
-      for (var i = 0; i < responseItems.length; i++) {
+      for (const i = 0; i < responseItems.length; i++) {
         responseItems[i].name = responseItems[i].name.toUpperCase();
         responseItems[i].artist.name =
           responseItems[i].artist.name.toUpperCase();
@@ -92,14 +92,14 @@ function retrieveTracks(user, timeRangeSlug, domNumber, domPeriod) {
       document
         .getElementById('download')
         .addEventListener('click', function () {
-          var offScreen = document.querySelector('.receiptContainer');
+          const offScreen = document.querySelector('.receiptContainer');
           window.scrollTo(0, 0);
-          var clone = hiddenClone(offScreen);
+          const clone = hiddenClone(offScreen);
           // Use clone with htm2canvas and delete clone
           html2canvas(clone, { scrollY: -window.scrollY }).then((canvas) => {
-            var dataURL = canvas.toDataURL('image/png', 1.0);
+            const dataURL = canvas.toDataURL('image/png', 1.0);
             document.body.removeChild(clone);
-            var link = document.createElement('a');
+            const link = document.createElement('a');
             console.log(dataURL);
             link.href = dataURL;
             link.download = `${timeRangeSlug}.png`;

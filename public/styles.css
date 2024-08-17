@@ -656,7 +656,7 @@ nav > ul > li > a {
   -o-transition-duration: 0.5s;
   transition-duration: 0.5s;
   color: white;
-  font-family: var(--heading-font);
+  font-family: const(--heading-font);
 }
 .navColor {
   -webkit-transition-duration: 0.5s;
@@ -681,7 +681,7 @@ nav > ul > li > a {
   color: black;
 }
 .nav-logo-p {
-  font-family: var(--heading-font);
+  font-family: const(--heading-font);
   -webkit-transition-duration: 0.5s;
   -o-transition-duration: 0.5s;
   transition-duration: 0.5s;

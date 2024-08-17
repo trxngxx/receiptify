@@ -41,18 +41,18 @@
     <script type="text/javascript">
       (function () {
         function makeStub() {
-          var TCF_LOCATOR_NAME = '__tcfapiLocator';
-          var queue = [];
-          var win = window;
-          var cmpFrame;
+          const TCF_LOCATOR_NAME = '__tcfapiLocator';
+          const queue = [];
+          const win = window;
+          const cmpFrame;
 
           function addFrame() {
-            var doc = win.document;
-            var otherCMP = !!win.frames[TCF_LOCATOR_NAME];
+            const doc = win.document;
+            const otherCMP = !!win.frames[TCF_LOCATOR_NAME];
 
             if (!otherCMP) {
               if (doc.body) {
-                var iframe = doc.createElement('iframe');
+                const iframe = doc.createElement('iframe');
 
                 iframe.style.cssText = 'display:none';
                 iframe.name = TCF_LOCATOR_NAME;
@@ -65,8 +65,8 @@
           }
 
           function tcfAPIHandler() {
-            var gdprApplies;
-            var args = arguments;
+            const gdprApplies;
+            const args = arguments;
 
             if (!args.length) {
               return queue;
@@ -82,7 +82,7 @@
                 }
               }
             } else if (args[0] === 'ping') {
-              var retr = {
+              const retr = {
                 gdprApplies: gdprApplies,
                 cmpLoaded: false,
                 cmpStatus: 'stub',
@@ -97,8 +97,8 @@
           }
 
           function postMessageEventHandler(event) {
-            var msgIsString = typeof event.data === 'string';
-            var json = {};
+            const msgIsString = typeof event.data === 'string';
+            const json = {};
 
             try {
               if (msgIsString) {
@@ -108,14 +108,14 @@
               }
             } catch (ignore) {}
 
-            var payload = json.__tcfapiCall;
+            const payload = json.__tcfapiCall;
 
             if (payload) {
               window.__tcfapi(
                 payload.command,
                 payload.version,
                 function (retValue, success) {
-                  var returnMsg = {
+                  const returnMsg = {
                     __tcfapiReturn: {
                       returnValue: retValue,
                       success: success,

@@ -3,7 +3,7 @@
  * @return Object
  */
 const SPOTIFY_ROOT = 'https://api.spotify.com/v1';
-var userProfileSource = document.getElementById(
+const userProfileSource = document.getElementById(
     'user-profile-template'
   ).innerHTML,
   userProfileTemplate = Handlebars.compile(userProfileSource),
@@ -420,8 +420,8 @@ const initSearch = () => {
 };
 
 const getHashParams = () => {
-  var hashParams = {};
-  var e,
+  const hashParams = {};
+  const e,
     r = /([^&;=]+)=?([^&;]*)/g,
     q = window.location.hash.substring(1);
   while ((e = r.exec(q))) {
@@ -432,11 +432,11 @@ const getHashParams = () => {
 
 const hiddenClone = (element) => {
   // Create clone of element
-  var clone = element.cloneNode(true);
+  const clone = element.cloneNode(true);
 
   // Position element relatively within the
   // body but still out of the viewport
-  var style = clone.style;
+  const style = clone.style;
   style.position = 'relative';
   style.top = window.innerHeight + 'px';
   style.left = 0;
@@ -451,12 +451,12 @@ const downloadImg = () => {
 
   const fileName = `top_${type}_${period}`;
   window.scrollTo(0, 0);
-  var clone = hiddenClone(offScreen());
+  const clone = hiddenClone(offScreen());
   // Use clone with htm2canvas and delete clone
   html2canvas(clone, { scrollY: -window.scrollY }).then((canvas) => {
-    var dataURL = canvas.toDataURL('image/png', 1.0);
+    const dataURL = canvas.toDataURL('image/png', 1.0);
     document.body.removeChild(clone);
-    var link = document.createElement('a');
+    const link = document.createElement('a');
     link.href = dataURL;
     link.download = `${fileName}.png`;
     document.body.appendChild(link);
@@ -471,10 +471,10 @@ const newTab = () => {
 
   const fileName = `top_${type}_${period}`;
   window.scrollTo(0, 0);
-  var clone = hiddenClone(offScreen());
+  const clone = hiddenClone(offScreen());
   // Use clone with htm2canvas and delete clone
   html2canvas(clone, { scrollY: -window.scrollY }).then((canvas) => {
-    var dataURL = canvas.toDataURL('image/png', 1.0);
+    const dataURL = canvas.toDataURL('image/png', 1.0);
     document.body.removeChild(clone);
     const newWindow = window.open('about:blank');
     let img = newWindow.document.createElement('img');
@@ -941,7 +941,7 @@ function retrieveItemsApple(hist) {
     json: true,
   };
   let albumInfoArr = [];
-  for (var i = 0; i < data.responseItems.length; i++) {
+  for (const i = 0; i < data.responseItems.length; i++) {
     const attributes = data.responseItems[i].attributes;
     const isAlbum = data.responseItems[i].type.includes('albums');
     const albumInfo = {
